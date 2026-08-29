@@ -156,3 +156,16 @@ generate-remaining.mjs   leftover S04/S05 job — safe to delete
 > 3. Print it out
 
 Matte 200gsm, actual size / 100%, no extra border. 5 sizes included.
+
+---
+
+## Push a listing (Open API)
+
+`/etsy-deliverable` — skill in `.cursor/skills/etsy-deliverable/`. Draft only. Never publish from the CLI.
+
+```bash
+node scripts/etsy-api.mjs get cocoa
+node scripts/etsy-api.mjs push --listing cocoa --photos output/cocoa-listing-photos --zip output/Cocoa-Typography-Bundle-20.zip --pdf Cocoa-Typography-Bundle-20-INFO.pdf --desc output/cocoa-listing-photos/listing-description.txt --dry-run
+```
+
+One-time OAuth: `.env` from `.env.example`, then `node scripts/etsy-oauth.mjs`. Do not commit `.env`.

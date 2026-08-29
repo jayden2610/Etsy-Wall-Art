@@ -7,6 +7,10 @@
     "generate:one": "node generate.mjs --one M01",
     "generate:cocoa": "node generate-cocoa.mjs",
     "generate:cocoa-sizes": "node generate-cocoa.mjs --sizes",
+    "etsy:oauth": "node scripts/etsy-oauth.mjs",
+    "etsy:status": "node scripts/etsy-api.mjs status",
+    "etsy:get": "node scripts/etsy-api.mjs get",
+    "etsy:push": "node scripts/etsy-api.mjs push",
     "dev": "vite",
     "preview": "vite preview"
   },

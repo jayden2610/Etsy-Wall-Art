@@ -10,3 +10,5 @@ That page is the product brief, style notes, listing copy, and remaining work. T
 Then read `README.md` for what is already rendered and which path is open (volume catalog vs high-quality curated). Both are valid. The first ship is the already-rendered Anton motivational set in `output/` — there is no `template.html` to regenerate it from.
 
 **Cocoa volume set (approved):** read `.handoff`, then `node generate-cocoa.mjs` and `node generate-cocoa.mjs --sizes`. Do not rewrite `prints-cocoa.json`.
+
+**Listings:** `/etsy-deliverable` via `node scripts/etsy-api.mjs` (Open API). Leave drafts unpublished. Do not use BetterWright or Browser MCP for listing edits unless the API is down. Never commit `.env`.

@@ -4,3 +4,10 @@ output/
 *.log
 .DS_Store
 Thumbs.db
+.env
+.etsy-oauth-key.pem
+.etsy-oauth-cert.pem
+.etsy-oauth-state.json
+.etsy-oauth-url.txt
+_bw-*.mjs
+_write-*.mjs
