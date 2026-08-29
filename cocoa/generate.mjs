@@ -1,9 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
-const prints = JSON.parse(fs.readFileSync('./prints-cocoa.json', 'utf-8'));
-const template = fs.readFileSync('./template-saved.html', 'utf-8');
+const HERE = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(HERE, '..');
+const prints = JSON.parse(fs.readFileSync(path.join(HERE, 'prints.json'), 'utf-8'));
+const template = fs.readFileSync(path.join(HERE, 'template.html'), 'utf-8');
 const args = process.argv.slice(2);
 
 function argValue(flag) {
@@ -13,7 +16,7 @@ function argValue(flag) {
 
 const printId = argValue('--print');
 const sizesAll = args.includes('--sizes');
-const outRoot = argValue('--out') || path.join('output', 'cocoa');
+const outRoot = argValue('--out') || path.join(ROOT, 'output', 'cocoa', 'prints');
 
 const targets = printId
   ? prints.filter((print) => print.printId === printId)

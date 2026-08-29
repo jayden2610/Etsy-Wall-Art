@@ -7,8 +7,10 @@ https://app.notion.com/p/3ca67992bfc981e5a4b3d41d93f2c8eb
 
 That page is the product brief, style notes, listing copy, and remaining work. This repo is the local renderer / export workspace for that page. Do not invent a second brief.
 
-Then read `README.md` for what is already rendered and which path is open (volume catalog vs high-quality curated). Both are valid. The first ship is the already-rendered Anton motivational set in `output/` — there is no `template.html` to regenerate it from.
+Then read `README.md`. Live sets are **Cocoa**, **Pocket** (the zine still-lifes), **Japandi**, and **Botanical**. Anton gym 20 is parked — do not treat it as the shop face.
 
-**Cocoa volume set (approved):** read `.handoff`, then `node generate-cocoa.mjs` and `node generate-cocoa.mjs --sizes`. Do not rewrite `prints-cocoa.json`.
+**Cocoa (approved volume set):** read `cocoa/.handoff`, then `node cocoa/generate.mjs` and `node cocoa/generate.mjs --sizes`. Do not rewrite `cocoa/prints.json`.
+
+**Pocket:** same 11 zine posters as `Typography/assets/Typography - ZIne Poster`. Do not split Pocket and Zine into two products.
 
 **Listings:** `/etsy-deliverable` via `node scripts/etsy-api.mjs` (Open API). Leave drafts unpublished. Do not use BetterWright or Browser MCP for listing edits unless the API is down. Never commit `.env`.

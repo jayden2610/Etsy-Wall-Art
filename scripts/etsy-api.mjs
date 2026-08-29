@@ -11,11 +11,29 @@ import {
 } from "./etsy-env.mjs";
 
 const API = "https://openapi.etsy.com/v3/application";
-const KNOWN = {
-  anton: "4564670051",
-  cocoa: "4564758499",
-  pocket: "4564965599",
+
+/** Alias → listing id + default local files. Flags override. Anton is parked (id only). */
+const SETS = {
+  anton: { id: "4564670051" },
+  cocoa: {
+    id: "4564758499",
+    photos: "output/cocoa/listing-photos",
+    zip: "output/cocoa/Cocoa-Typography-Bundle-20.zip",
+    pdf: "cocoa/INFO.pdf",
+    desc: "output/cocoa/listing-photos/listing-description.txt",
+  },
+  pocket: {
+    id: "4564965599",
+    photos: "output/pocket/listing-photos",
+    zip: "output/pocket/Pocket-Studies-Zine-Posters-11.zip",
+    pdf: "pocket/INFO.pdf",
+    desc: "output/pocket/listing-photos/listing-description.txt",
+  },
 };
+
+const KNOWN = Object.fromEntries(
+  Object.entries(SETS).map(([alias, set]) => [alias, set.id]),
+);
 
 function die(message) {
   console.error(message);
@@ -224,13 +242,15 @@ async function cmdPush() {
   if (hasFlag("--publish") || hasFlag("--active")) {
     die("Refuse to publish. Omit --publish / --active. Draft only.");
   }
-  const listingId = resolveListingId(argValue("--listing"));
+  const listingArg = argValue("--listing");
+  const listingId = resolveListingId(listingArg);
   if (!listingId) die("Need --listing <id|cocoa|anton|pocket>");
+  const set = SETS[listingArg.toLowerCase()] || {};
 
-  const photoDir = argValue("--photos");
-  const zipPath = argValue("--zip");
-  const pdfPath = argValue("--pdf");
-  const descPath = argValue("--desc");
+  const photoDir = argValue("--photos") || set.photos || "";
+  const zipPath = argValue("--zip") || set.zip || "";
+  const pdfPath = argValue("--pdf") || set.pdf || "";
+  const descPath = argValue("--desc") || set.desc || "";
   const title = argValue("--title");
   const tagsRaw = argValue("--tags");
   const dryRun = hasFlag("--dry-run");

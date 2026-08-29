@@ -33,7 +33,9 @@ node scripts/etsy-api.mjs push --listing cocoa --photos <dir> --zip <zip> --pdf 
 node scripts/etsy-api.mjs push --listing cocoa --dry-run
 ```
 
-Aliases: `cocoa` `anton` `pocket` or a numeric listing id.
+Aliases: `cocoa` `pocket` (defaults included) · `anton` (parked, id only) · or a numeric listing id.
+
+`push --listing cocoa` fills photos / zip / PDF / description from `SETS` in `etsy-api.mjs`. Flags override.
 
 `push` updates a **draft**. It never sends `state=active`. `--publish` and `--active` exit.
 
@@ -68,4 +70,4 @@ Docs: [Listings](https://developers.etsy.com/documentation/tutorials/listings) �
 4. `setInputFiles` only accepts files in the BetterWright artifact dir.
 5. Success URL contains `opened-from=listing-editor-success`.
 
-`_bw-*.mjs` files in the repo are throwaways. Do not treat them as a CLI.
+`archive/betterwright/` is leftover click scripts. Do not treat them as a CLI.

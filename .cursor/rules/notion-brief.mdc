@@ -1,6 +1,7 @@
 ---
 description: Product brief lives on Notion — Etsy Typography/Wall Art
-alwaysApply: true
+globs: etsy-typography/**
+alwaysApply: false
 ---
 
 # Brief is on Notion
@@ -11,6 +12,6 @@ https://app.notion.com/p/3ca67992bfc981e5a4b3d41d93f2c8eb
 
 Fetch that page before planning or generating. Do not invent a parallel brief in chat.
 
-- First ship = already-rendered Anton prints in `output/`. There is no `template.html`.
-- Volume (many prints) and high-quality curated sets are both open. Ask which track before building a new set.
-- Buyer files = clean typography only. Room mockups are Etsy listing images, never in the PDF.
+- Live sets: Cocoa, Pocket (zine still-lifes), Japandi, Botanical. Pocket and Zine are the same 11 prints.
+- Anton gym 20 is parked in `output/_parked/anton-20/` — not the shop face.
+- Buyer files = clean prints only. Room mockups are Etsy listing images, never in the PDF.

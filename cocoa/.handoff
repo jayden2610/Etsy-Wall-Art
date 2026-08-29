@@ -20,8 +20,8 @@ This job is a **volume** lane next to the locked 5+5+5 curated angles. One look.
 
 Reference (must match):
 
-- `references/cocoa/D11_packed-cocoa.png` (M01, the approved brown)
-- `references/cocoa/D11_m02-remember-why.png`
+- `cocoa/references/D11_packed-cocoa.png` (M01, the approved brown)
+- `cocoa/references/D11_m02-remember-why.png`
 
 Recipe — do not drift:
 
@@ -29,13 +29,13 @@ Recipe — do not drift:
 - Ink `#E8D5B8`
 - Face: Abril Fatface, all-caps, tight leading (~0.78), tracking about `-0.03em`
 - Centered lockup, 2–3 lines, no second font, no box, no hairline, no outline, no photo
-- Source of truth: `.d11` in `template-saved.html`
+- Source of truth: `.d11` in `cocoa/template.html`
 
 D12 Clay is a sister system. **Do not use it on this set.**
 
 ## Approved copy — do not rewrite
 
-Stacks live in `prints-cocoa.json`. Build all 20.
+Stacks live in `cocoa/prints.json`. Build all 20.
 
 | ID | Line | Stack |
 |---|---|---|
@@ -67,16 +67,16 @@ C07 ships with `displaySize: 156`. The generator also auto-shrinks if a line ove
 ```bash
 npm install
 npx playwright install chromium
-node generate-cocoa.mjs
-node generate-cocoa.mjs --sizes
+node cocoa/generate.mjs
+node cocoa/generate.mjs --sizes
 ```
 
-Single print: `node generate-cocoa.mjs --print C07`
+Single print: `node cocoa/generate.mjs --print C07`
 
 Outputs:
 
-- `output/cocoa/<ID>/2x3/<ID>_<slug>__2x3.png` (then 4x5, 5x7, 11x14, ISO)
-- `output/cocoa/cocoa-board.png` after the 2x3 pass
+- `output/cocoa/prints/<ID>/2x3/<ID>_<slug>__2x3.png` (then 4x5, 5x7, 11x14, ISO)
+- `output/cocoa/prints/cocoa-board.png` after the 2x3 pass
 
 Ratios (stage 1500px wide, deviceScaleFactor 3 → 300 DPI):
 
@@ -88,8 +88,8 @@ Ratios (stage 1500px wide, deviceScaleFactor 3 → 300 DPI):
 
 ## QA before you stop
 
-1. Open `output/cocoa/cocoa-board.png` and every 2x3.
-2. Compare C01–C20 to `references/cocoa/D11_packed-cocoa.png` — same brown, same face, same density.
+1. Open `output/cocoa/prints/cocoa-board.png` and every 2x3.
+2. Compare C01–C20 to `cocoa/references/D11_packed-cocoa.png` — same brown, same face, same density.
 3. No cropped letters. Auto-fit should have caught C07 / C01 / C06.
 4. Then run `--sizes` and spot-check C01, C07, C13 on 4x5 and ISO.
 
@@ -106,4 +106,4 @@ Ratios (stage 1500px wide, deviceScaleFactor 3 → 300 DPI):
 
 - Fonts: wait for `document.fonts.ready` (already in the script). Need network for Google Fonts.
 - Playwright missing: `npx playwright install chromium`
-- Overflow: lower `displaySize` on that row in `prints-cocoa.json` and re-run `--print Cxx`
+- Overflow: lower `displaySize` on that row in `cocoa/prints.json` and re-run `--print Cxx`

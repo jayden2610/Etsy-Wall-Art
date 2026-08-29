@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "generate": "node generate.mjs",
-    "generate:one": "node generate.mjs --one M01",
-    "generate:cocoa": "node generate-cocoa.mjs",
-    "generate:cocoa-sizes": "node generate-cocoa.mjs --sizes",
+    "generate:cocoa": "node cocoa/generate.mjs",
+    "generate:cocoa-sizes": "node cocoa/generate.mjs --sizes",
+    "deliver:cocoa": "node cocoa/generate-deliverable.mjs",
+    "generate:pocket": "python pocket/generate.py",
+    "deliver:pocket": "node pocket/generate-deliverable.mjs",
+    "generate:line-art-boards": "node line-art/generate-boards.mjs",
+    "generate:ratio-grids": "node line-art/generate-ratio-grids.mjs",
     "etsy:oauth": "node scripts/etsy-oauth.mjs",
     "etsy:status": "node scripts/etsy-api.mjs status",
     "etsy:get": "node scripts/etsy-api.mjs get",
-    "etsy:push": "node scripts/etsy-api.mjs push",
-    "dev": "vite",
-    "preview": "vite preview"
+    "etsy:push": "node scripts/etsy-api.mjs push"
   },
   "dependencies": {},
   "devDependencies": {

@@ -59,7 +59,7 @@ etsy-deliverable:
 | `11x14/` | 11:14 | 11×14 |
 | `ISO/` | ISO / A-series | A4 · A3 · A2 |
 
-All buyer PNGs: 300 DPI, sRGB, 4500px on the short side.
+Buyer files: 300 DPI, sRGB, 4500px on the short side. Cocoa is PNG. Pocket is JPEG.
 
 ### Listing photos
 
@@ -67,11 +67,12 @@ Hero / shop thumbnail = **one framed room**, wood still visible. Then more rooms
 
 ## Known listing ids
 
-| Set | Id | Alias |
-|---|---|---|
-| Anton first-ship | 4564670051 | `anton` |
-| Cocoa | 4564758499 | `cocoa` |
-| Pocket Studies | 4564965599 | `pocket` |
+| Set | Id | Alias | Default files |
+|---|---|---|---|
+| Cocoa | 4564758499 | `cocoa` | yes |
+| Pocket Studies | 4564965599 | `pocket` | yes |
+| Anton (parked) | 4564670051 | `anton` | id only — pass paths if you must touch it |
+| Japandi / Botanical | — | — | not listed yet |
 
 ## Etsy via Open API
 
@@ -85,13 +86,12 @@ One-time auth (already done for TypographySG):
 Push a draft (never publishes):
 
 ```bash
-node scripts/etsy-api.mjs push --listing cocoa \
-  --photos output/cocoa-listing-photos \
-  --zip output/Cocoa-Typography-Bundle-20.zip \
-  --pdf Cocoa-Typography-Bundle-20-INFO.pdf \
-  --desc output/cocoa-listing-photos/listing-description.txt \
-  --title "20 Cocoa Typography Wall Art Set, Motivational Quote Prints, Brown Poster Bundle, Digital Download"
+node scripts/etsy-api.mjs push --listing cocoa --dry-run
+node scripts/etsy-api.mjs push --listing cocoa
+node scripts/etsy-api.mjs push --listing pocket
 ```
+
+Aliases resolve photos, zip, PDF, and description from `SETS` in `scripts/etsy-api.mjs`. Pass `--photos` / `--zip` / `--pdf` / `--desc` / `--title` only to override.
 
 Then `node scripts/etsy-api.mjs get cocoa`. Confirm: state is `draft`, hero is the living-room frame, zip + PDF present. Human opens Shop Manager once to look. Do not send `state=active`.
 
