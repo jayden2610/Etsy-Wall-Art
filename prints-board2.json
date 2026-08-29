@@ -1,0 +1,18 @@
+[
+  {
+    "id": "M02-D11",
+    "printId": "M02",
+    "line": "Remember why you started",
+    "dir": "d11",
+    "dirName": "Packed cocoa",
+    "displayLines": ["Remember", "why you", "started"]
+  },
+  {
+    "id": "M02-D12",
+    "printId": "M02",
+    "line": "Remember why you started",
+    "dir": "d12",
+    "dirName": "Sentence clay",
+    "displayLines": ["Remember why", "you started."]
+  }
+]

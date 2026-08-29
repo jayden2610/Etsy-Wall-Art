@@ -1,0 +1,41 @@
+[
+  {
+    "id": "M01",
+    "line": "Focus on what you can control",
+    "dir": "d6",
+    "dirName": "White + red word",
+    "display": "Focus",
+    "support": "on what you can control"
+  },
+  {
+    "id": "M02",
+    "line": "Remember why you started",
+    "dir": "d2",
+    "dirName": "Tomato house",
+    "displayLines": ["Remember why", "you started"]
+  },
+  {
+    "id": "M03",
+    "line": "Trust the process",
+    "dir": "d10",
+    "dirName": "Risograph two-ink",
+    "display": "Trust",
+    "support": "the process"
+  },
+  {
+    "id": "M04",
+    "line": "Enjoy the little things",
+    "dir": "d5",
+    "dirName": "Dusty blue",
+    "display": "Enjoy the",
+    "support": "little things"
+  },
+  {
+    "id": "M05",
+    "line": "Slow down",
+    "dir": "d3",
+    "dirName": "Mustard field",
+    "display": "Slow",
+    "support": "down"
+  }
+]

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&family=DM+Serif+Display&family=Instrument+Sans:wght@500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:100%;height:100%;background:#111;}
+  .stage{ width:1500px; height:2250px; display:flex; align-items:center; justify-content:center; padding:60px; }
+  .paper{
+    width:100%; height:100%;
+    background:#FFF8EC; border:10px solid #E8DDC9; border-radius:4px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:80px 90px; position:relative;
+    background-image:
+      radial-gradient(ellipse at 20% 30%, rgba(184,173,154,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 70%, rgba(184,173,154,0.08) 0%, transparent 50%);
+  }
+  .stack{ width:100%; display:flex; flex-direction:column; align-items:center; text-align:center; }
+  /* shared */
+  .hairline{ width: 90px; height:1.5px; background:#D8CFC0; opacity:0.9; }
+  .label{
+    position:absolute; top:48px; left:50%; transform:translateX(-50%);
+    font:700 13px 'Space Grotesk', sans-serif; letter-spacing:0.32em; text-transform:uppercase; color:#C8BFB0;
+  }
+  /* VARIANT STYLES */
+  /* V1: Editorial — refined Anton + hairlines + tracking */
+  .v1 .h1{ font:400 162px 'Anton', sans-serif; line-height:0.92; color:#0A0A0A; letter-spacing:0.02em; }
+  .v1 .h2{ font:400 162px 'Anton', sans-serif; line-height:0.92; color:#0A0A0A; letter-spacing:0.02em; }
+  .v1 .stack{ gap:18px; }
+
+  /* V2: Hero % — huge 1% */
+  .v2 .one{ font:400 320px 'Anton', sans-serif; line-height:0.85; color:#0A0A0A; letter-spacing:-0.02em; }
+  .v2 .h1{ font:400 118px 'Anton', sans-serif; line-height:0.9; color:#0A0A0A; letter-spacing:0.08em; }
+  .v2 .h2{ font:400 68px 'Space Grotesk', sans-serif; font-weight:500; line-height:1; color:#B8AD9A; letter-spacing:0.32em; text-transform:uppercase; margin-top:10px; }
+  .v2 .stack{ gap:6px; }
+
+  /* V3: Left-aligned brutalist */
+  .v3.paper{ align-items:flex-start; justify-content:center; padding-left:110px; padding-right:110px; }
+  .v3 .stack{ align-items:flex-start; text-align:left; gap:2px; }
+  .v3 .h1{ font:400 168px 'Anton', sans-serif; line-height:0.88; color:#0A0A0A; letter-spacing:0.01em; }
+  .v3 .h2{ font:400 168px 'Anton', sans-serif; line-height:0.88; color:#0A0A0A; letter-spacing:0.01em; }
+  .v3 .rule{ width:100%; height:1px; background:#E8DDC9; margin:28px 0 0; }
+
+  /* V4: Outline 1% */
+  .v4 .one{ font:400 240px 'Anton', sans-serif; line-height:0.85; color:transparent; -webkit-text-stroke: 3px #0A0A0A; }
+  .v4 .h1{ font:400 142px 'Anton', sans-serif; line-height:0.92; color:#0A0A0A; }
+  .v4 .h2{ font:400 72px 'Space Grotesk', sans-serif; font-weight:400; line-height:1; color:#B8AD9A; letter-spacing:0.28em; text-transform:uppercase; margin-top:8px; }
+  .v4 .stack{ gap:4px; }
+
+  /* V5: Tight stack with thin rule between */
+  .v5 .h1{ font:400 178px 'Anton', sans-serif; line-height:0.86; color:#0A0A0A; letter-spacing:-0.01em; }
+  .v5 .h2{ font:400 178px 'Anton', sans-serif; line-height:0.86; color:#0A0A0A; letter-spacing:-0.01em; }
+  .v5 .midrule{ width: 140px; height:1.5px; background:#B8AD9A; margin:22px 0; opacity:0.9; }
+
+  /* V6: Airy spaced luxury */
+  .v6 .h1{ font:400 132px 'Anton', sans-serif; line-height:0.95; color:#0A0A0A; letter-spacing:0.12em; }
+  .v6 .h2{ font:400 132px 'Anton', sans-serif; line-height:0.95; color:#0A0A0A; letter-spacing:0.12em; }
+  .v6 .sub{ font:400 16px 'Inter', sans-serif; letter-spacing:0.42em; text-transform:uppercase; color:#B8AD9A; margin-top:28px; }
+  .v6 .stack{ gap:8px; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="paper" id="paper">
+    <div class="label" id="label"></div>
+    <div class="stack" id="stack"></div>
+  </div>
+</div>
+<script>
+const q = new URLSearchParams(location.search);
+const v = q.get('v') || 'v1';
+document.getElementById('paper').classList.add(v);
+document.getElementById('label').textContent = v;
+const stack = document.getElementById('stack');
+const templates = {
+  v1: `<div class="hairline"></div><div class="h1">1% BETTER</div><div class="h2">EVERY DAY</div><div class="hairline"></div>`,
+  v2: `<div class="one">1%</div><div class="h1">BETTER</div><div class="h2">EVERY DAY</div>`,
+  v3: `<div class="h1">1% BETTER</div><div class="h2">EVERY DAY</div><div class="rule"></div>`,
+  v4: `<div class="one">1%</div><div class="h1">BETTER</div><div class="h2">EVERY DAY</div>`,
+  v5: `<div class="h1">1% BETTER</div><div class="midrule"></div><div class="h2">EVERY DAY</div>`,
+  v6: `<div class="h1">1% BETTER</div><div class="h2">EVERY DAY</div><div class="sub">—  ONE PERCENT  —</div>`,
+};
+stack.innerHTML = templates[v] || templates.v1;
+const labels = {
+  v1:'V1 — EDITORIAL (hairlines + tracking)',
+  v2:'V2 — HERO 1% (oversized %)',
+  v3:'V3 — BRUTALIST LEFT (gallery)',
+  v4:'V4 — OUTLINE 1% (stroke contrast)',
+  v5:'V5 — TIGHT STACK + RULE',
+  v6:'V6 — AIRY LUXURY (wide tracking)',
+};
+document.getElementById('label').textContent = labels[v];
+</script>
+</body>
+</html>

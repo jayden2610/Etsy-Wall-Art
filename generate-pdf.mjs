@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+import path from 'node:path';
+const htmlPath = path.resolve('info.html');
+const outPath = path.resolve('Etsy-Typography-20-Bundle-INFO.pdf');
+const browser = await chromium.launch();
+const page = await browser.newPage();
+await page.goto('file:///' + htmlPath.replaceAll('\\','/'), {waitUntil:'networkidle'});
+await page.waitForTimeout(800);
+await page.pdf({ path: outPath, format:'A4', printBackground:true, margin:{top:'0',bottom:'0',left:'0',right:'0'} });
+await browser.close();
+console.log('✔ PDF', outPath);

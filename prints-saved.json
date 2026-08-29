@@ -1,0 +1,86 @@
+[
+  {
+    "id": "M01-D05",
+    "printId": "M01",
+    "line": "Focus on what you can control",
+    "dir": "d5",
+    "dirName": "Dusty blue",
+    "display": "Focus on",
+    "support": "what you can control"
+  },
+  {
+    "id": "M01-D06",
+    "printId": "M01",
+    "line": "Focus on what you can control",
+    "dir": "d6",
+    "dirName": "White rust FOCUS",
+    "display": "FOCUS",
+    "support": "on what you can control"
+  },
+  {
+    "id": "M01-D08",
+    "printId": "M01",
+    "line": "Focus on what you can control",
+    "dir": "d8",
+    "dirName": "Airy tracked",
+    "displayLines": ["Focus on", "what you", "can control"]
+  },
+  {
+    "id": "M02-D05",
+    "printId": "M02",
+    "line": "Remember why you started",
+    "dir": "d5",
+    "dirName": "Dusty blue",
+    "display": "Remember why",
+    "support": "you started"
+  },
+  {
+    "id": "M02-D06",
+    "printId": "M02",
+    "line": "Remember why you started",
+    "dir": "d6",
+    "dirName": "White rust FOCUS",
+    "display": "REMEMBER",
+    "support": "why you started"
+  },
+  {
+    "id": "M02-D08",
+    "printId": "M02",
+    "line": "Remember why you started",
+    "dir": "d8",
+    "dirName": "Airy tracked",
+    "displayLines": ["Remember why", "you started"]
+  },
+  {
+    "id": "M01-D11",
+    "printId": "M01",
+    "line": "Focus on what you can control",
+    "dir": "d11",
+    "dirName": "Packed cocoa",
+    "displayLines": ["Focus on", "what you", "can control"]
+  },
+  {
+    "id": "M01-D12",
+    "printId": "M01",
+    "line": "Focus on what you can control",
+    "dir": "d12",
+    "dirName": "Sentence clay",
+    "displayLines": ["Focus on what", "you can control."]
+  },
+  {
+    "id": "M02-D11",
+    "printId": "M02",
+    "line": "Remember why you started",
+    "dir": "d11",
+    "dirName": "Packed cocoa",
+    "displayLines": ["Remember", "why you", "started"]
+  },
+  {
+    "id": "M02-D12",
+    "printId": "M02",
+    "line": "Remember why you started",
+    "dir": "d12",
+    "dirName": "Sentence clay",
+    "displayLines": ["Remember why", "you started."]
+  }
+]

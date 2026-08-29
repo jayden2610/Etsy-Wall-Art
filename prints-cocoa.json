@@ -1,0 +1,123 @@
+[
+  {
+    "printId": "C01",
+    "line": "Collect moments not things",
+    "slug": "collect-moments",
+    "displayLines": ["Collect", "moments", "not things"]
+  },
+  {
+    "printId": "C02",
+    "line": "Be where your feet are",
+    "slug": "be-where-your-feet-are",
+    "displayLines": ["Be where", "your feet", "are"]
+  },
+  {
+    "printId": "C03",
+    "line": "This too shall pass",
+    "slug": "this-too-shall-pass",
+    "displayLines": ["This too", "shall pass"]
+  },
+  {
+    "printId": "C04",
+    "line": "You are enough",
+    "slug": "you-are-enough",
+    "displayLines": ["You are", "enough"]
+  },
+  {
+    "printId": "C05",
+    "line": "Make it a good day",
+    "slug": "make-it-a-good-day",
+    "displayLines": ["Make it", "a good day"]
+  },
+  {
+    "printId": "C06",
+    "line": "The best is yet to come",
+    "slug": "the-best-is-yet-to-come",
+    "displayLines": ["The best", "is yet", "to come"]
+  },
+  {
+    "printId": "C07",
+    "line": "Grow through what you go through",
+    "slug": "grow-through",
+    "displayLines": ["Grow through", "what you", "go through"],
+    "displaySize": 156
+  },
+  {
+    "printId": "C08",
+    "line": "Progress over perfection",
+    "slug": "progress-over-perfection",
+    "displayLines": ["Progress", "over", "perfection"]
+  },
+  {
+    "printId": "C09",
+    "line": "Choose your hard",
+    "slug": "choose-your-hard",
+    "displayLines": ["Choose", "your hard"]
+  },
+  {
+    "printId": "C10",
+    "line": "Life is happening now",
+    "slug": "life-is-happening-now",
+    "displayLines": ["Life is", "happening", "now"]
+  },
+  {
+    "printId": "C11",
+    "line": "Become who you needed",
+    "slug": "become-who-you-needed",
+    "displayLines": ["Become", "who you", "needed"]
+  },
+  {
+    "printId": "C12",
+    "line": "Less hurry more life",
+    "slug": "less-hurry-more-life",
+    "displayLines": ["Less hurry", "more life"]
+  },
+  {
+    "printId": "C13",
+    "line": "One day at a time",
+    "slug": "one-day-at-a-time",
+    "displayLines": ["One day", "at a time"]
+  },
+  {
+    "printId": "C14",
+    "line": "You get to begin again",
+    "slug": "you-get-to-begin-again",
+    "displayLines": ["You get", "to begin", "again"]
+  },
+  {
+    "printId": "C15",
+    "line": "Let it be enough",
+    "slug": "let-it-be-enough",
+    "displayLines": ["Let it", "be enough"]
+  },
+  {
+    "printId": "C16",
+    "line": "Start where you are",
+    "slug": "start-where-you-are",
+    "displayLines": ["Start", "where you are"]
+  },
+  {
+    "printId": "C17",
+    "line": "Keep going anyway",
+    "slug": "keep-going-anyway",
+    "displayLines": ["Keep going", "anyway"]
+  },
+  {
+    "printId": "C18",
+    "line": "Better things ahead",
+    "slug": "better-things-ahead",
+    "displayLines": ["Better", "things", "ahead"]
+  },
+  {
+    "printId": "C19",
+    "line": "Do it scared",
+    "slug": "do-it-scared",
+    "displayLines": ["Do it", "scared"]
+  },
+  {
+    "printId": "C20",
+    "line": "Nothing is wasted",
+    "slug": "nothing-is-wasted",
+    "displayLines": ["Nothing", "is wasted"]
+  }
+]

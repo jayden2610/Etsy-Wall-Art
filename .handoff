@@ -1,0 +1,109 @@
+# Cocoa — cloud agent handoff
+
+Build the approved **Cocoa** life-quote set. Do not invent a second brief. Do not change the type recipe. Do not start Angle 2 living-room or kids.
+
+## Suggested skills
+
+- Fetch the Notion page first (workspace rule)
+- `recreating-typography` only if you must restate the locked recipe — do not redesign
+- `verification-before-completion` after renders
+
+## Brief
+
+**Notion:** https://app.notion.com/p/3ca67992bfc981e5a4b3d41d93f2c8eb
+
+This job is a **volume** lane next to the locked 5+5+5 curated angles. One look. Twenty lines. NahaPrints listing model: **one design × five sizes**. Buyer file = clean type only. No room mockups in the PNG.
+
+**Do not list:** These are the good old days. CIAO. Do not reuse M01–M05 or L01–L05 copy.
+
+## Locked look — Cocoa (D11)
+
+Reference (must match):
+
+- `references/cocoa/D11_packed-cocoa.png` (M01, the approved brown)
+- `references/cocoa/D11_m02-remember-why.png`
+
+Recipe — do not drift:
+
+- Paper `#352418`
+- Ink `#E8D5B8`
+- Face: Abril Fatface, all-caps, tight leading (~0.78), tracking about `-0.03em`
+- Centered lockup, 2–3 lines, no second font, no box, no hairline, no outline, no photo
+- Source of truth: `.d11` in `template-saved.html`
+
+D12 Clay is a sister system. **Do not use it on this set.**
+
+## Approved copy — do not rewrite
+
+Stacks live in `prints-cocoa.json`. Build all 20.
+
+| ID | Line | Stack |
+|---|---|---|
+| C01 | Collect moments not things | Collect / moments / not things |
+| C02 | Be where your feet are | Be where / your feet / are |
+| C03 | This too shall pass | This too / shall pass |
+| C04 | You are enough | You are / enough |
+| C05 | Make it a good day | Make it / a good day |
+| C06 | The best is yet to come | The best / is yet / to come |
+| C07 | Grow through what you go through | Grow through / what you / go through |
+| C08 | Progress over perfection | Progress / over / perfection |
+| C09 | Choose your hard | Choose / your hard |
+| C10 | Life is happening now | Life is / happening / now |
+| C11 | Become who you needed | Become / who you / needed |
+| C12 | Less hurry more life | Less hurry / more life |
+| C13 | One day at a time | One day / at a time |
+| C14 | You get to begin again | You get / to begin / again |
+| C15 | Let it be enough | Let it / be enough |
+| C16 | Start where you are | Start / where you are |
+| C17 | Keep going anyway | Keep going / anyway |
+| C18 | Better things ahead | Better / things / ahead |
+| C19 | Do it scared | Do it / scared |
+| C20 | Nothing is wasted | Nothing / is wasted |
+
+C07 ships with `displaySize: 156`. The generator also auto-shrinks if a line overflows.
+
+## How to build
+
+```bash
+npm install
+npx playwright install chromium
+node generate-cocoa.mjs
+node generate-cocoa.mjs --sizes
+```
+
+Single print: `node generate-cocoa.mjs --print C07`
+
+Outputs:
+
+- `output/cocoa/<ID>/2x3/<ID>_<slug>__2x3.png` (then 4x5, 5x7, 11x14, ISO)
+- `output/cocoa/cocoa-board.png` after the 2x3 pass
+
+Ratios (stage 1500px wide, deviceScaleFactor 3 → 300 DPI):
+
+- 2x3 1500×2250
+- 4x5 1500×1875
+- 5x7 1500×2100
+- 11x14 1500×1909
+- ISO 1500×2121
+
+## QA before you stop
+
+1. Open `output/cocoa/cocoa-board.png` and every 2x3.
+2. Compare C01–C20 to `references/cocoa/D11_packed-cocoa.png` — same brown, same face, same density.
+3. No cropped letters. Auto-fit should have caught C07 / C01 / C06.
+4. Then run `--sizes` and spot-check C01, C07, C13 on 4x5 and ISO.
+
+## Stop here
+
+- Do not invent new lines
+- Do not switch fonts or add a second voice
+- Do not cut living-room L01–L05 or kids K01–K05
+- Do not put room mockups in the buyer files
+- Do not create the Etsy listing
+- Commit the generator/JSON/handoff if you change them; `output/` is gitignored — leave renders in the workspace
+
+## If something breaks
+
+- Fonts: wait for `document.fonts.ready` (already in the script). Need network for Google Fonts.
+- Playwright missing: `npx playwright install chromium`
+- Overflow: lower `displaySize` on that row in `prints-cocoa.json` and re-run `--print Cxx`

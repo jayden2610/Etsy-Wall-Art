@@ -1,0 +1,17 @@
+{
+  "name": "etsy-typography",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "generate": "node generate.mjs",
+    "generate:one": "node generate.mjs --one M01",
+    "generate:cocoa": "node generate-cocoa.mjs",
+    "generate:cocoa-sizes": "node generate-cocoa.mjs --sizes",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "playwright": "^1.47.0"
+  }
+}

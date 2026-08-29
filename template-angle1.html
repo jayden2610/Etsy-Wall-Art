@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=IBM+Plex+Sans:wght@500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@500&family=Syne:wght@800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:100%;height:100%;background:#111}
+  .stage{width:__STAGE_W__px;height:__STAGE_H__px;display:flex;align-items:center;justify-content:center}
+  .paper{
+    width:100%;height:100%;position:relative;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:11% 9%;
+  }
+  .stack{width:100%;display:flex;flex-direction:column}
+
+  .d2.paper{background:#F6EFE4}
+  .d2 .stack{align-items:flex-start;text-align:left}
+  .d2 .display{font:400 104px 'Archivo Black',sans-serif;line-height:0.94;letter-spacing:-0.02em;color:#C23B22;text-transform:uppercase}
+
+  .d3.paper{background:#D9A441}
+  .d3 .stack{align-items:flex-start;text-align:left;gap:12px}
+  .d3 .display{font:800 200px 'Syne',sans-serif;line-height:0.84;letter-spacing:-0.04em;color:#21180C;text-transform:uppercase}
+  .d3 .support{font:500 56px 'Fraunces',serif;font-style:italic;color:#21180C}
+
+  .d5.paper{background:#EFE6D6}
+  .d5 .stack{align-items:center;text-align:center;gap:6px}
+  .d5 .display{font:400 120px 'Instrument Serif',serif;font-style:italic;line-height:0.98;color:#3E5C6E}
+  .d5 .support{font:400 88px 'Instrument Serif',serif;line-height:1.02;color:#3E5C6E}
+
+  .d6.paper{background:#FFFFFF}
+  .d6 .stack{align-items:center;text-align:center;gap:16px}
+  .d6 .display{font:900 148px 'Fraunces',serif;line-height:0.86;letter-spacing:-0.025em;color:#C23B22}
+  .d6 .support{font:500 32px 'IBM Plex Sans',sans-serif;letter-spacing:0.16em;text-transform:uppercase;color:#111}
+
+  .d10.paper{background:#F6EFE4}
+  .d10 .stack{align-items:flex-start;text-align:left;gap:18px}
+  .d10 .display{font:900 168px 'Fraunces',serif;line-height:0.86;letter-spacing:-0.03em;color:#1E3A5F}
+  .d10 .rule{width:200px;height:8px;background:#E07A5F}
+  .d10 .support{font:500 34px 'Outfit',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#1E3A5F}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="paper" id="paper">
+    <div class="stack" id="stack"></div>
+  </div>
+</div>
+<script>
+const data = __DATA_JSON__;
+const paper = document.getElementById('paper');
+const stack = document.getElementById('stack');
+const dir = data.dir;
+paper.classList.add(dir);
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+}
+
+function displayHtml() {
+  if (Array.isArray(data.displayLines) && data.displayLines.length) {
+    return data.displayLines.map((line) => escapeHtml(line)).join('<br>');
+  }
+  return escapeHtml(data.display || '');
+}
+
+function supportHtml() {
+  return escapeHtml(data.support || '');
+}
+
+const layouts = {
+  d2: () => `<div class="display">${displayHtml()}</div>`,
+  d3: () => `<div class="display">${displayHtml()}</div><div class="support">${supportHtml()}</div>`,
+  d5: () => `<div class="display">${displayHtml()}</div><div class="support">${supportHtml()}</div>`,
+  d6: () => `<div class="display">${displayHtml()}</div><div class="support">${supportHtml()}</div>`,
+  d10: () => `<div class="display">${displayHtml()}</div><div class="rule"></div><div class="support">${supportHtml()}</div>`,
+};
+
+const render = layouts[dir];
+if (!render) {
+  throw new Error(`Unknown direction: ${dir}`);
+}
+stack.innerHTML = render();
+</script>
+</body>
+</html>

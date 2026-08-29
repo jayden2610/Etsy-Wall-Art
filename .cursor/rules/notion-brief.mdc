@@ -1,0 +1,16 @@
+---
+description: Product brief lives on Notion — Etsy Typography/Wall Art
+alwaysApply: true
+---
+
+# Brief is on Notion
+
+This folder is the local workspace for **Etsy - Typography/Wall Art**.
+
+https://app.notion.com/p/3ca67992bfc981e5a4b3d41d93f2c8eb
+
+Fetch that page before planning or generating. Do not invent a parallel brief in chat.
+
+- First ship = already-rendered Anton prints in `output/`. There is no `template.html`.
+- Volume (many prints) and high-quality curated sets are both open. Ask which track before building a new set.
+- Buyer files = clean typography only. Room mockups are Etsy listing images, never in the PDF.

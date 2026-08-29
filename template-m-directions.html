@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=Great+Vibes&family=IBM+Plex+Sans:wght@400;500&family=Instrument+Sans:wght@500&family=Instrument+Serif:ital@0;1&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Outfit:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:100%;height:100%;background:#111}
+  .stage{width:1500px;height:2250px;display:flex;align-items:center;justify-content:center}
+  .paper{
+    width:100%;height:100%;position:relative;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:160px 140px;
+  }
+  .label{
+    position:absolute;top:48px;left:50%;transform:translateX(-50%);
+    font:500 13px 'IBM Plex Sans',sans-serif;letter-spacing:0.28em;text-transform:uppercase;
+    color:#9a9388;white-space:nowrap;z-index:2;
+  }
+  .stack{width:100%;display:flex;flex-direction:column}
+
+  /* D1 Editorial cream — serif speaks, grotesque labels */
+  .d1.paper{background:#FFF8EC}
+  .d1 .stack{align-items:center;text-align:center;gap:28px}
+  .d1 .display{font:900 168px 'Fraunces',serif;line-height:0.88;letter-spacing:-0.02em;color:#14110E}
+  .d1 .support{font:400 42px 'Fraunces',serif;font-style:italic;line-height:1.05;color:#14110E}
+  .d1 .meta{font:500 16px 'IBM Plex Sans',sans-serif;letter-spacing:0.34em;text-transform:uppercase;color:#B8AD9A;margin-top:36px}
+  .d1 .hair{width:72px;height:1px;background:#C8BFB0}
+
+  /* D2 Tomato house — one chunky voice, red ink */
+  .d2.paper{background:#F6EFE4}
+  .d2 .stack{align-items:flex-start;text-align:left;gap:0}
+  .d2 .display{font:400 118px 'Archivo Black',sans-serif;line-height:0.92;letter-spacing:-0.02em;color:#C23B22;text-transform:uppercase}
+
+  /* D3 Mustard field — one ink, full ground */
+  .d3.paper{background:#D9A441}
+  .d3 .stack{align-items:flex-start;text-align:left;gap:18px}
+  .d3 .display{font:800 132px 'Syne',sans-serif;line-height:0.9;letter-spacing:-0.03em;color:#21180C;text-transform:uppercase}
+  .d3 .support{font:500 38px 'Fraunces',serif;font-style:italic;letter-spacing:0.02em;color:#21180C;text-transform:none}
+
+  /* D4 Navy ticket — serif + stripe chrome */
+  .d4.paper{background:#F3EDE3;padding:180px 150px}
+  .d4 .stack{align-items:center;text-align:center;gap:22px}
+  .d4 .stripe{width:100%;height:10px;background:repeating-linear-gradient(90deg,#1E3A5F 0 18px,#F3EDE3 18px 28px)}
+  .d4 .display{font:600 92px 'Newsreader',serif;line-height:0.98;color:#1E3A5F}
+  .d4 .meta{font:500 15px 'Instrument Sans',sans-serif;letter-spacing:0.36em;text-transform:uppercase;color:#1E3A5F}
+
+  /* D5 Dusty blue — italic + roman, one ink */
+  .d5.paper{background:#FFFFFF;align-items:center;justify-content:center}
+  .d5 .stack{align-items:center;text-align:center;gap:8px}
+  .d5 .display{font:400 128px 'Instrument Serif',serif;font-style:italic;line-height:0.98;color:#3E5C6E}
+  .d5 .support{font:400 92px 'Instrument Serif',serif;line-height:1.02;color:#3E5C6E}
+
+  /* D6 White + rust FOCUS */
+  .d6.paper{background:#FFFFFF;align-items:center;justify-content:center}
+  .d6 .stack{align-items:center;text-align:center;gap:18px}
+  .d6 .display{font:900 188px 'Fraunces',serif;line-height:0.82;letter-spacing:-0.03em;color:#C23B22;text-transform:uppercase}
+  .d6 .support{font:500 38px 'IBM Plex Sans',sans-serif;letter-spacing:0.16em;text-transform:uppercase;color:#111111}
+
+  /* D7 Nested script + serif */
+  .d7.paper{background:#F7F1E8}
+  .d7 .stack{align-items:center;text-align:center;position:relative;gap:0}
+  .d7 .display{font:400 228px 'Great Vibes',cursive;line-height:0.68;color:#1A1714;margin-bottom:-8px}
+  .d7 .support{font:600 48px 'Cormorant Garamond',serif;letter-spacing:0.16em;text-transform:uppercase;color:#1A1714}
+
+  /* D8 Airy tracked — white, no ornaments */
+  .d8.paper{background:#FFFFFF;align-items:center;justify-content:center}
+  .d8 .stack{align-items:center;text-align:center;gap:18px}
+  .d8 .display{font:700 92px 'Cormorant Garamond',serif;line-height:1.02;letter-spacing:0.14em;text-transform:uppercase;color:#2A241C}
+  .d8 .hair{display:none}
+
+  /* D9 Sage field — cream type */
+  .d9.paper{background:#7E8B74}
+  .d9 .stack{align-items:flex-start;text-align:left;gap:20px}
+  .d9 .display{font:700 118px 'Fraunces',serif;line-height:0.92;letter-spacing:-0.02em;color:#F4EFE6}
+  .d9 .support{font:400 36px 'Fraunces',serif;font-style:italic;color:#F4EFE6}
+
+  /* D10 Risograph two-ink */
+  .d10.paper{background:#F6EFE4}
+  .d10 .stack{align-items:flex-start;text-align:left;gap:20px}
+  .d10 .display{font:900 124px 'Fraunces',serif;line-height:0.9;letter-spacing:-0.03em;color:#1E3A5F}
+  .d10 .rule{width:220px;height:8px;background:#E07A5F;margin:4px 0 8px}
+  .d10 .support{font:500 32px 'Outfit',sans-serif;letter-spacing:0.12em;text-transform:uppercase;color:#1E3A5F}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="paper" id="paper">
+    <div class="label" id="label"></div>
+    <div class="stack" id="stack"></div>
+  </div>
+</div>
+<script>
+const q = new URLSearchParams(location.search);
+const v = q.get('v') || 'd1';
+const hideLabel = q.get('label') === '0';
+const paper = document.getElementById('paper');
+const stack = document.getElementById('stack');
+const labelEl = document.getElementById('label');
+paper.classList.add(v);
+
+const directions = {
+  d1: {
+    label: 'D1 — Editorial cream',
+    html: `<div class="hair"></div><div class="display">Focus</div><div class="support">on what you can control</div><div class="hair"></div>`,
+  },
+  d2: {
+    label: 'D2 — Tomato house',
+    html: `<div class="display">Focus on<br>what you<br>can control</div>`,
+  },
+  d3: {
+    label: 'D3 — Mustard field',
+    html: `<div class="display">Focus</div><div class="support">on what you can control</div>`,
+  },
+  d4: {
+    label: 'D4 — Navy ticket',
+    html: `<div class="stripe"></div><div class="display">Focus on what<br>you can control</div><div class="stripe"></div><div class="meta">M01  ·  print</div>`,
+  },
+  d5: {
+    label: 'D5 — Dusty blue',
+    html: `<div class="display">Focus on</div><div class="support">what you can control</div>`,
+  },
+  d6: {
+    label: 'D6 — White + red word',
+    html: `<div class="display">FOCUS</div><div class="support">on what you can control</div>`,
+  },
+  d7: {
+    label: 'D7 — Nested script',
+    html: `<div class="display">Focus</div><div class="support">on what you can control</div>`,
+  },
+  d8: {
+    label: 'D8 — Airy tracked',
+    html: `<div class="display">Focus on<br>what you<br>can control</div>`,
+  },
+  d9: {
+    label: 'D9 — Sage field',
+    html: `<div class="display">Focus on</div><div class="support">what you can control</div>`,
+  },
+  d10: {
+    label: 'D10 — Risograph two-ink',
+    html: `<div class="display">Focus</div><div class="rule"></div><div class="support">on what you can control</div>`,
+  },
+};
+
+const dir = directions[v] || directions.d1;
+stack.innerHTML = dir.html;
+labelEl.textContent = dir.label;
+if (hideLabel) labelEl.style.display = 'none';
+</script>
+</body>
+</html>
