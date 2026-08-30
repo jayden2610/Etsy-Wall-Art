@@ -1,0 +1,197 @@
+{
+  "shop": "TypographySG",
+  "currency": "SGD",
+  "priceBand": "9-14",
+  "notes": [
+    "Tags must be ≤20 characters each.",
+    "Prefer 13 tags. Buyer language only — no internal set slang unless buyers search it.",
+    "Titles front-load the searchable phrase; do not lead with Cocoa/Pocket/Japandi/Botanical."
+  ],
+  "sets": {
+    "cocoa": {
+      "alias": "cocoa",
+      "listingId": "4564758499",
+      "angle": "Searchable motivational typography — warm brown/cream packed lockups",
+      "titleSeeds": [
+        "Motivational Wall Art Printable Typography Quote Bundle Digital Download",
+        "Inspirational Quote Prints Digital Download Typography Wall Art Bundle",
+        "Office Motivational Poster Pack Printable Typography Wall Art Download"
+      ],
+      "tags": [
+        "motivation wall art",
+        "typography print",
+        "quote poster",
+        "inspirational print",
+        "digital download",
+        "office decor",
+        "printable wall art",
+        "minimalist poster",
+        "home office art",
+        "affirmation print",
+        "brown cream print",
+        "wall art bundle",
+        "instant download"
+      ],
+      "avoid": ["anton", "gym poster", "naha prints", "live laugh love"]
+    },
+    "pocket": {
+      "alias": "pocket",
+      "listingId": "4564965599",
+      "angle": "Zine still-life posters (apple, pear, teacup…) — same 11 as Typography Zine Poster",
+      "titleSeeds": [
+        "Still Life Wall Art Printable Zine Poster Set Digital Download",
+        "Kitchen Still Life Prints Digital Download Food Poster Bundle",
+        "Aesthetic Still Life Poster Pack Printable Wall Art Download"
+      ],
+      "tags": [
+        "still life print",
+        "zine poster",
+        "kitchen wall art",
+        "food poster",
+        "digital download",
+        "printable wall art",
+        "aesthetic poster",
+        "fruit wall art",
+        "gallery wall set",
+        "apartment decor",
+        "minimalist print",
+        "poster bundle",
+        "instant download"
+      ],
+      "avoid": ["splitting pocket vs zine", "kids nursery"]
+    },
+    "japandi": {
+      "alias": "japandi",
+      "listingId": null,
+      "angle": "Single-line nature studies — calm japandi living room",
+      "titleSeeds": [
+        "Japandi Line Art Print Digital Download Minimal Nature Wall Art",
+        "Minimalist Nature Line Drawing Printable Wall Art Digital Download"
+      ],
+      "tags": [
+        "japandi wall art",
+        "line art print",
+        "minimalist print",
+        "nature wall art",
+        "digital download",
+        "printable wall art",
+        "living room art",
+        "calm wall decor",
+        "single line art",
+        "neutral wall art",
+        "apartment decor",
+        "gallery wall",
+        "instant download"
+      ],
+      "avoid": ["fuji drop J03 as hero if cut"]
+    },
+    "botanical": {
+      "alias": "botanical",
+      "listingId": null,
+      "angle": "Single-line plant studies",
+      "titleSeeds": [
+        "Botanical Line Art Print Digital Download Plant Wall Art Printable",
+        "Minimal Plant Line Drawing Printable Wall Art Digital Download"
+      ],
+      "tags": [
+        "botanical wall art",
+        "plant line art",
+        "minimalist print",
+        "digital download",
+        "printable wall art",
+        "greenery poster",
+        "living room art",
+        "apartment decor",
+        "gallery wall",
+        "nature print",
+        "line art print",
+        "neutral wall art",
+        "instant download"
+      ],
+      "avoid": []
+    },
+    "angle1_motivational": {
+      "alias": null,
+      "listingId": null,
+      "angle": "Angle 1 singles from brief — searchable motivational lines",
+      "titleSeeds": [
+        "Motivational Typography Print Digital Download Focus Wall Art",
+        "Inspirational Quote Print Printable Typography Wall Art Download"
+      ],
+      "tags": [
+        "motivation wall art",
+        "typography print",
+        "focus poster",
+        "inspirational print",
+        "minimalist wall art",
+        "digital download",
+        "office decor",
+        "printable wall art",
+        "quote wall art",
+        "home office art",
+        "affirmation print",
+        "desk wall art",
+        "instant download"
+      ],
+      "avoid": ["these are the good old days"]
+    },
+    "angle2_living_room": {
+      "alias": null,
+      "listingId": null,
+      "angle": "Angle 2 — place + personality living-room lines",
+      "titleSeeds": [
+        "Living Room Typography Print Digital Download Home Quote Wall Art",
+        "This Must Be The Place Printable Typography Wall Art Download"
+      ],
+      "tags": [
+        "living room wall art",
+        "home quote print",
+        "typography print",
+        "entryway decor",
+        "housewarming gift",
+        "digital download",
+        "printable wall art",
+        "apartment decor",
+        "hallway wall art",
+        "minimalist print",
+        "quote poster",
+        "gallery wall",
+        "instant download"
+      ],
+      "avoid": ["ciao commodity", "journal lines", "teen bedroom"]
+    },
+    "angle3_kids": {
+      "alias": null,
+      "listingId": null,
+      "angle": "Angle 3 — kids/summer illustration, 5–8 max",
+      "titleSeeds": [
+        "Nursery Wall Art Print Digital Download Kids Summer Poster",
+        "Whimsical Kids Printable Wall Art Nursery Digital Download"
+      ],
+      "tags": [
+        "kids wall art",
+        "nursery print",
+        "summer wall art",
+        "whimsical poster",
+        "digital download",
+        "gallery wall",
+        "printable wall art",
+        "kids room decor",
+        "nursery decor",
+        "playroom art",
+        "soft rainbow art",
+        "animal nursery",
+        "instant download"
+      ],
+      "avoid": ["250-file packs", "neon cartoon"]
+    }
+  },
+  "sharedConversionPhrases": [
+    "digital download",
+    "instant download",
+    "printable wall art",
+    "typography print",
+    "five sizes",
+    "300 DPI"
+  ]
+}

@@ -85,3 +85,17 @@ Angle-1 lockup experiments (D05 / D06 / D08 / D11 / D12) that led to Cocoa live 
 One design × five ratios (2:3, 4:5, 5:7, 11:14, ISO) @ 300 DPI sRGB. Instant download = zip + info PDF. Custom wall text +SGD 4.90, optional.
 
 Shop: **TypographySG**. Leave drafts unpublished. Never commit `.env`.
+
+---
+
+## Marketing — Etsy Demand Agent
+
+Traffic agent for digital downloads: **on-Etsy SEO first**, then listing conversion, then gated off-Etsy drafts. Skill: `/etsy-marketing` (`.cursor/skills/etsy-marketing/`).
+
+```bash
+node scripts/etsy-seo-audit.mjs
+node scripts/etsy-seo-audit.mjs --listing cocoa
+node scripts/etsy-seo-audit.mjs --json
+```
+
+Keyword banks + outreach templates: `marketing/`. Full task list: `marketing/SEO-CHECKLIST.md`. Do not post TypographySG wall art to `@elinejournals` unless you explicitly say so.
