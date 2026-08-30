@@ -14,3 +14,5 @@ Then read `README.md`. Live sets are **Cocoa**, **Pocket** (the zine still-lifes
 **Pocket:** same 11 zine posters as `Typography/assets/Typography - ZIne Poster`. Do not split Pocket and Zine into two products.
 
 **Listings:** `/etsy-deliverable` via `node scripts/etsy-api.mjs` (Open API). Leave drafts unpublished. Do not use BetterWright or Browser MCP for listing edits unless the API is down. Never commit `.env`.
+
+**Marketing:** `/etsy-marketing` — Etsy Demand Agent (SEO ~70%, conversion ~20%, gated social/outreach ~10%). Run `node scripts/etsy-seo-audit.mjs`. Banks in `marketing/keyword-banks.json`. Do not invent a second brief; do not auto-publish.
