@@ -98,4 +98,4 @@ node scripts/etsy-seo-audit.mjs --listing cocoa
 node scripts/etsy-seo-audit.mjs --json
 ```
 
-Keyword banks + outreach templates: `marketing/`. Do not post TypographySG wall art to `@elinejournals` unless you explicitly say so.
+Keyword banks + outreach templates: `marketing/`. Full task list: `marketing/SEO-CHECKLIST.md`. Do not post TypographySG wall art to `@elinejournals` unless you explicitly say so.
