@@ -1,0 +1,4 @@
+{
+  "name": "etsy-typography",
+  "install": "bash .cursor/install.sh"
+}
