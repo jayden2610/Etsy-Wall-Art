@@ -101,7 +101,7 @@ function blobFromFile(filePath) {
 
 function orderListingPhotos(dir) {
   const names = fs.readdirSync(dir).filter((name) => {
-    if (name.startsWith("_")) return false;
+    if (name.startsWith("_") || name.startsWith("proof-")) return false;
     if (!/^\d{2}-/.test(name)) return false;
     if (/^(07|08|09)-/.test(name)) return false;
     return /\.(jpe?g|png)$/i.test(name);
@@ -298,33 +298,37 @@ async function cmdPush() {
     if (!fs.existsSync(filePath)) die(`Missing file: ${filePath}`);
   }
 
-  const creds = requireCreds();
-  const token = await refreshAccessToken(creds);
-  const listing = await getListing(creds, token, listingId);
-  await rememberShop(listing);
-  if (listing.state === "active" && (photoPaths.length || filePaths.length)) {
-    console.error("Listing is active. Uploading files/photos on an active listing is allowed; still not publishing.");
-  }
-
   const patch = {};
   if (!photosOnly) patch.type = "download";
   if (title) patch.title = title;
   if (descPath) patch.description = fs.readFileSync(path.resolve(ROOT, descPath), "utf8");
   if (tagsRaw) patch.tags = tagsRaw.split(",").map((tag) => tag.trim()).filter(Boolean);
 
-  const plan = {
-    listingId,
-    state: listing.state,
-    shopId: listing.shop_id,
-    patch: Object.keys(patch),
-    photos: photoPaths.map((filePath) => path.basename(filePath)),
-    files: filePaths.map((filePath) => path.basename(filePath)),
-    photosOnly,
-    dryRun,
-  };
   if (dryRun) {
-    console.log(JSON.stringify({ ok: true, ...plan }, null, 2));
+    console.log(
+      JSON.stringify(
+        {
+          ok: true,
+          listingId,
+          photos: photoPaths.map((filePath) => path.basename(filePath)),
+          files: filePaths.map((filePath) => path.basename(filePath)),
+          patch: Object.keys(patch),
+          photosOnly,
+          dryRun: true,
+        },
+        null,
+        2,
+      ),
+    );
     return;
+  }
+
+  const creds = requireCreds();
+  const token = await refreshAccessToken(creds);
+  const listing = await getListing(creds, token, listingId);
+  await rememberShop(listing);
+  if (listing.state === "active" && (photoPaths.length || filePaths.length)) {
+    console.error("Listing is active. Uploading files/photos on an active listing is allowed; still not publishing.");
   }
 
   if (Object.keys(patch).length) {
@@ -358,8 +362,40 @@ async function cmdPush() {
   );
 }
 
+async function cmdPullPhotos() {
+  const listingArg = argValue("--listing") || process.argv[3] || "";
+  const listingId = resolveListingId(listingArg);
+  if (!listingId) die(LISTING_HELP);
+  const set = SETS[listingArg.toLowerCase()] || {};
+  const photoDir = path.resolve(ROOT, argValue("--photos") || set.photos || "");
+  if (!photoDir || photoDir === path.resolve(ROOT)) {
+    die("Need --photos or a SETS photos dir");
+  }
+  const creds = requireCreds();
+  const token = await refreshAccessToken(creds);
+  const listing = await getListing(creds, token, listingId);
+  await rememberShop(listing);
+  const images = await api(creds, token, "GET", `/listings/${listingId}/images`);
+  const rows = (images.results || []).slice().sort((a, b) => a.rank - b.rank);
+  const destDir = path.join(photoDir, "_pulled");
+  fs.mkdirSync(destDir, { recursive: true });
+  const written = [];
+  for (const row of rows) {
+    const url = row.url_fullxfull || row.url_570xN || row.url_170x135;
+    if (!url) continue;
+    const ext = path.extname(new URL(url).pathname) || ".jpg";
+    const dest = path.join(destDir, `rank-${String(row.rank).padStart(2, "0")}${ext}`);
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`GET ${url} ${res.status}`);
+    fs.writeFileSync(dest, Buffer.from(await res.arrayBuffer()));
+    written.push({ rank: row.rank, file: path.basename(dest), id: row.listing_image_id });
+  }
+  console.log(JSON.stringify({ ok: true, listingId, state: listing.state, dest: destDir, images: written }, null, 2));
+}
+
 const command = process.argv[2] || "status";
 if (command === "status") await cmdStatus();
 else if (command === "get") await cmdGet(resolveListingId(process.argv[3]));
 else if (command === "push") await cmdPush();
-else die(`Unknown command: ${command}. Use status | get | push.`);
+else if (command === "pull-photos") await cmdPullPhotos();
+else die(`Unknown command: ${command}. Use status | get | push | pull-photos.`);

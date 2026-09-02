@@ -29,6 +29,7 @@ Never commit `.env`. Never paste the shared secret in chat.
 ```bash
 node scripts/etsy-api.mjs status
 node scripts/etsy-api.mjs get cocoa
+node scripts/etsy-api.mjs pull-photos --listing cocoa
 node scripts/etsy-api.mjs push --listing cocoa --photos <dir> --zip <zip> --pdf <pdf> --desc <txt> --title "..."
 node scripts/etsy-api.mjs push --listing cocoa --dry-run
 node scripts/etsy-api.mjs push --listing cocoa --photos-only

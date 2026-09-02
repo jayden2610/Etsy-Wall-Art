@@ -4,7 +4,7 @@ The print has to look like it belongs on that wall. Pick the room from the **pap
 
 ## Cover cards
 
-`01-` is a **cover card**, not a room tour. After a 1:1 center crop (Etsy shop tile), the framed sheet must fill **at least 40%** of the tile (target ~50%). Combined pine close-up (`output/combined/listing-photos/01-hero-pine-closeup.jpg`, formerly `05-pine-closeup.jpg`) is the visual bar.
+`01-` is a **cover card**, not a room tour. Write it as a **4:5** oak crop so a 1:1 Etsy tile still shows the frame. The framed sheet must fill **at least 40%** of the tile (target ~50%). Combined pine close-up is the visual bar.
 
 - Wide living room, desk lifestyle, hallway, and gallery wall are **`02-`–`05-` only**.
 - At most one listing in the shop may use the monstera living-room plate as `01-`. The shop-cover cleanup uses **zero**.

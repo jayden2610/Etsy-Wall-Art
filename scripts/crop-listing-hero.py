@@ -48,8 +48,21 @@ def resolve_box(
     return box
 
 
+def fit_aspect(image: Image.Image, ratio: float) -> Image.Image:
+    """Center-crop to width/height = ratio so a 1:1 tile still shows the oak."""
+    w, h = image.size
+    target_w = w
+    target_h = int(round(w / ratio))
+    if target_h > h:
+        target_h = h
+        target_w = int(round(h * ratio))
+    left = (w - target_w) // 2
+    top = (h - target_h) // 2
+    return image.crop((left, top, left + target_w, top + target_h))
+
+
 def save_hero(image: Image.Image, dest: Path) -> None:
-    rgb = image.convert("RGB")
+    rgb = fit_aspect(image.convert("RGB"), 4 / 5)
     w, h = rgb.size
     short = min(w, h)
     if short > SHORT_SIDE:
