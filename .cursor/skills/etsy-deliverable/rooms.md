@@ -12,7 +12,7 @@ The print has to look like it belongs on that wall. Pick the room from the **pap
 - Gallery wall is for sets as photo 2, never the cover (three distant frames fail the 40% rule).
 - Keep the full buyer sheet in the oak. Do not lockup-crop letters. Do not add a fake mat. Do not change print recipes (Pocket pear / Travel sketch are sparse on purpose; the cover gets closer to the frame, not a redesigned PNG).
 
-Crops live in [`scripts/cover-crops.json`](../../../scripts/cover-crops.json). Apply with `python scripts/crop-listing-hero.py`.
+Crops live in [`scripts/cover-crops.json`](../../../scripts/cover-crops.json). Apply with `python scripts/crop-listing-hero.py`. Local runbook: [COVER-CARDS.md](../../../COVER-CARDS.md).
 
 ## How to choose a later room
 
