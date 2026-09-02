@@ -29,11 +29,40 @@ const SETS = {
     pdf: "pocket/INFO.pdf",
     desc: "output/pocket/listing-photos/listing-description.txt",
   },
+  combined: {
+    id: "4565408194",
+    photos: "output/combined/listing-photos",
+  },
+  singlish: {
+    id: "4566462994",
+    photos: "output/singlish/listing-photos",
+  },
+  kopitiam: {
+    id: "4566504162",
+    photos: "output/kopitiam/listing-photos",
+  },
+  "home-bundle": {
+    id: "4565314043",
+    photos: "output/angle-2/bundle/listing-photos",
+  },
+  travel: {
+    id: "4565293952",
+    photos: "output/travel-journal/listing-photos",
+  },
+  "travel-ready": {
+    id: "4565295242",
+    photos: "output/travel-journal/ready-made/listing-photos",
+  },
 };
 
 const KNOWN = Object.fromEntries(
-  Object.entries(SETS).map(([alias, set]) => [alias, set.id]),
+  Object.entries(SETS)
+    .filter(([, set]) => set.id)
+    .map(([alias, set]) => [alias, set.id]),
 );
+
+const LISTING_HELP =
+  "Need --listing <cocoa|pocket|combined|singlish|kopitiam|home-bundle|travel|travel-ready|anton|id>";
 
 function die(message) {
   console.error(message);
@@ -80,13 +109,15 @@ function orderListingPhotos(dir) {
   const rank = (name) => {
     if (/^01-/.test(name)) return 1;
     if (/^0[2-5]-/.test(name)) return 2;
-    if (/^00-/.test(name)) return 3;
-    if (/^06-/.test(name)) return 4;
+    if (/^1[0-3]-/.test(name)) return 3;
+    if (/^00-/.test(name)) return 4;
+    if (/^06-/.test(name)) return 5;
     return 9;
   };
-  return names
+  const ordered = names
     .sort((a, b) => rank(a) - rank(b) || a.localeCompare(b))
     .map((name) => path.join(dir, name));
+  return ordered.slice(0, 10);
 }
 
 async function api(creds, token, method, urlPath, { json, form } = {}) {
@@ -208,7 +239,7 @@ async function cmdStatus() {
 }
 
 async function cmdGet(listingId) {
-  if (!listingId) die("Need listing id or cocoa|anton|pocket");
+  if (!listingId) die("Need listing id or alias");
   const creds = requireCreds();
   const token = await refreshAccessToken(creds);
   const listing = await getListing(creds, token, listingId);
@@ -244,21 +275,25 @@ async function cmdPush() {
   }
   const listingArg = argValue("--listing");
   const listingId = resolveListingId(listingArg);
-  if (!listingId) die("Need --listing <id|cocoa|anton|pocket>");
+  if (!listingId) die(LISTING_HELP);
   const set = SETS[listingArg.toLowerCase()] || {};
+  const photosOnly = hasFlag("--photos-only");
 
   const photoDir = argValue("--photos") || set.photos || "";
-  const zipPath = argValue("--zip") || set.zip || "";
-  const pdfPath = argValue("--pdf") || set.pdf || "";
-  const descPath = argValue("--desc") || set.desc || "";
-  const title = argValue("--title");
-  const tagsRaw = argValue("--tags");
+  const zipPath = photosOnly ? "" : argValue("--zip") || set.zip || "";
+  const pdfPath = photosOnly ? "" : argValue("--pdf") || set.pdf || "";
+  const descPath = photosOnly ? "" : argValue("--desc") || set.desc || "";
+  const title = photosOnly ? "" : argValue("--title");
+  const tagsRaw = photosOnly ? "" : argValue("--tags");
   const dryRun = hasFlag("--dry-run");
 
   const photoPaths = photoDir ? orderListingPhotos(path.resolve(ROOT, photoDir)) : [];
   const filePaths = [zipPath, pdfPath]
     .filter(Boolean)
     .map((filePath) => path.resolve(ROOT, filePath));
+  if (photosOnly && !photoPaths.length) {
+    die(`--photos-only needs listing photos in ${photoDir || "(no --photos dir)"}`);
+  }
   for (const filePath of [...photoPaths, ...filePaths]) {
     if (!fs.existsSync(filePath)) die(`Missing file: ${filePath}`);
   }
@@ -271,7 +306,8 @@ async function cmdPush() {
     console.error("Listing is active. Uploading files/photos on an active listing is allowed; still not publishing.");
   }
 
-  const patch = { type: "download" };
+  const patch = {};
+  if (!photosOnly) patch.type = "download";
   if (title) patch.title = title;
   if (descPath) patch.description = fs.readFileSync(path.resolve(ROOT, descPath), "utf8");
   if (tagsRaw) patch.tags = tagsRaw.split(",").map((tag) => tag.trim()).filter(Boolean);
@@ -283,6 +319,7 @@ async function cmdPush() {
     patch: Object.keys(patch),
     photos: photoPaths.map((filePath) => path.basename(filePath)),
     files: filePaths.map((filePath) => path.basename(filePath)),
+    photosOnly,
     dryRun,
   };
   if (dryRun) {

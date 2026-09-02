@@ -31,15 +31,18 @@ node scripts/etsy-api.mjs status
 node scripts/etsy-api.mjs get cocoa
 node scripts/etsy-api.mjs push --listing cocoa --photos <dir> --zip <zip> --pdf <pdf> --desc <txt> --title "..."
 node scripts/etsy-api.mjs push --listing cocoa --dry-run
+node scripts/etsy-api.mjs push --listing cocoa --photos-only
 ```
 
-Aliases: `cocoa` `pocket` (defaults included) · `anton` (parked, id only) · or a numeric listing id.
+Aliases: `cocoa` `pocket` `combined` `singlish` `kopitiam` `home-bundle` `travel` `travel-ready` (defaults included) · `anton` (parked, id only) · or a numeric listing id.
 
-`push --listing cocoa` fills photos / zip / PDF / description from `SETS` in `etsy-api.mjs`. Flags override.
+`push --listing cocoa` fills photos / zip / PDF / description from `SETS` in `scripts/etsy-api.mjs`. Flags override.
 
-`push` updates a **draft**. It never sends `state=active`. `--publish` and `--active` exit.
+`--photos-only` uploads listing images and skips zip, PDF, and title/description/tag/price/`type` patches. Use it for cover-card updates, especially live Travel. Do not unpublish Travel.
 
-Photo order in a folder: `01-` hero, `02-`–`05-` rooms, `00-` grid, `06-` size chart. Skip `_` prefixes and `07`/`08`/`09` slides.
+`push` never sends `state=active`. `--publish` / `--active` exit.
+
+Photo order in a folder: `01-` cover card (tight oak, ≥40% of a 1:1 tile), `02-`–`05-` rooms, `10-`–`13-` clean prints, `00-` grid, `06-` size chart. Skip `_` prefixes and `07`/`08`/`09` slides. Cap 10. Wide living room is never `01-` — see [rooms.md](rooms.md).
 
 ## Endpoints used
 

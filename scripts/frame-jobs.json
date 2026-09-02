@@ -1,0 +1,82 @@
+{
+  "cocoa": {
+    "photos": "output/cocoa/listing-photos",
+    "minRooms": 3,
+    "maxRooms": 5,
+    "proof": {
+      "out": "01-hero-closeup.jpg",
+      "from": "03-closeup.jpg",
+      "note": "Cover card. Tight oak crop. Wide living room is 02+ only."
+    }
+  },
+  "pocket": {
+    "photos": "output/pocket/listing-photos",
+    "minRooms": 3,
+    "maxRooms": 5,
+    "proof": {
+      "out": "01-hero-close-pear.jpg",
+      "from": "03-close-pear.jpg",
+      "note": "Cover card. Tight oak crop of the pear. Desk stays Singlish. Wide living room is 02+ only."
+    }
+  },
+  "combined": {
+    "photos": "output/combined/listing-photos",
+    "minRooms": 3,
+    "maxRooms": 5,
+    "proof": {
+      "out": "01-hero-pine-closeup.jpg",
+      "from": "05-pine-closeup.jpg",
+      "note": "Cover card. Pine close-up is the shop bar. Wide living room is 02+ only."
+    }
+  },
+  "singlish": {
+    "photos": "output/singlish/listing-photos",
+    "minRooms": 3,
+    "maxRooms": 5,
+    "proof": {
+      "out": "01-hero-desk.jpg",
+      "from": "01-hero-desk.jpg",
+      "note": "Cover card. Keep the desk theme; crop tighter so PAISEH hits 40–50%."
+    }
+  },
+  "kopitiam": {
+    "photos": "output/kopitiam/listing-photos",
+    "minRooms": 3,
+    "maxRooms": 5,
+    "proof": {
+      "out": "01-hero-closeup-teh.jpg",
+      "from": "02-closeup-teh.jpg",
+      "note": "Cover card. HDB house, tight oak. Do not move Kopitiam onto the Anton living room."
+    }
+  },
+  "home-bundle": {
+    "photos": "output/angle-2/bundle/listing-photos",
+    "minRooms": 3,
+    "maxRooms": 5,
+    "proof": {
+      "out": "01-hero-closeup-l03.jpg",
+      "from": "03-closeup-l03.jpg",
+      "note": "Cover card. HOW LUCKY ARE WE close-up. Wide living room is 02+ only."
+    }
+  },
+  "travel": {
+    "photos": "output/travel-journal/listing-photos",
+    "minRooms": 3,
+    "maxRooms": 5,
+    "proof": {
+      "out": "01-hero-framed.jpg",
+      "from": "01-hero-framed.jpg",
+      "note": "Cover card. Tighter oak crop. Live listing — photos only, never unpublish."
+    }
+  },
+  "travel-ready": {
+    "photos": "output/travel-journal/ready-made/listing-photos",
+    "minRooms": 3,
+    "maxRooms": 5,
+    "proof": {
+      "out": "01-hero-hallway.jpg",
+      "from": "04-hallway.jpg",
+      "note": "Cover card. Tight hallway so this tile is not the monstera room and not the custom close-up. Live listing — photos only."
+    }
+  }
+}

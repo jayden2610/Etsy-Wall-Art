@@ -1,0 +1,106 @@
+{
+  "sheet": "output/_hero-previews/shop-grid-after.jpg",
+  "listings": [
+    {
+      "alias": "kopitiam",
+      "label": "Kopitiam",
+      "photos": "output/kopitiam/listing-photos",
+      "hero": {
+        "from": "02-closeup-teh.jpg",
+        "out": "01-hero-closeup-teh.jpg",
+        "crop": [0.18, 0.06, 0.82, 0.70]
+      },
+      "moves": [
+        { "from": "01-hero-living.jpg", "to": "05-living-wide.jpg" }
+      ]
+    },
+    {
+      "alias": "singlish",
+      "label": "Singlish",
+      "photos": "output/singlish/listing-photos",
+      "hero": {
+        "from": "01-hero-desk.jpg",
+        "out": "01-hero-desk.jpg",
+        "crop": [0.14, 0.02, 0.86, 0.62]
+      },
+      "moves": []
+    },
+    {
+      "alias": "combined",
+      "label": "Japandi + Botanical",
+      "photos": "output/combined/listing-photos",
+      "hero": {
+        "from": "05-pine-closeup.jpg",
+        "out": "01-hero-pine-closeup.jpg",
+        "crop": null,
+        "promote": true
+      },
+      "moves": [
+        { "from": "01-hero-living-room.jpg", "to": "05-living-room.jpg" }
+      ]
+    },
+    {
+      "alias": "home-bundle",
+      "label": "Home quotes",
+      "photos": "output/angle-2/bundle/listing-photos",
+      "hero": {
+        "from": "03-closeup-l03.jpg",
+        "out": "01-hero-closeup-l03.jpg",
+        "crop": [0.12, 0.00, 0.88, 0.68]
+      },
+      "moves": [
+        { "from": "01-hero-l01.jpg", "delete": true }
+      ]
+    },
+    {
+      "alias": "travel-ready",
+      "label": "Travel ready",
+      "photos": "output/travel-journal/ready-made/listing-photos",
+      "hero": {
+        "from": "04-hallway.jpg",
+        "out": "01-hero-hallway.jpg",
+        "crop": [0.22, 0.00, 0.82, 0.60]
+      },
+      "moves": [
+        { "from": "01-hero-living-room.jpg", "to": "05-living-room.jpg" }
+      ]
+    },
+    {
+      "alias": "travel",
+      "label": "Travel custom",
+      "photos": "output/travel-journal/listing-photos",
+      "hero": {
+        "from": "01-hero-framed.jpg",
+        "out": "01-hero-framed.jpg",
+        "crop": [0.10, 0.06, 0.90, 0.78]
+      },
+      "moves": []
+    },
+    {
+      "alias": "cocoa",
+      "label": "Cocoa",
+      "photos": "output/cocoa/listing-photos",
+      "hero": {
+        "from": "03-closeup.jpg",
+        "out": "01-hero-closeup.jpg",
+        "crop": [0.10, 0.04, 0.90, 0.80]
+      },
+      "moves": [
+        { "from": "01-hero-living-room.jpg", "to": "04-living-room.jpg" }
+      ]
+    },
+    {
+      "alias": "pocket",
+      "label": "Pocket",
+      "photos": "output/pocket/listing-photos",
+      "hero": {
+        "from": "03-close-pear.jpg",
+        "out": "01-hero-close-pear.jpg",
+        "crop": [0.10, 0.04, 0.90, 0.80]
+      },
+      "moves": [
+        { "from": "01-hero-living.jpg", "delete": true }
+      ]
+    }
+  ]
+}
