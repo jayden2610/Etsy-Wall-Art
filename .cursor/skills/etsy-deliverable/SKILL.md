@@ -67,7 +67,7 @@ Hero / shop thumbnail (`01-`) is a **cover card**: oak visible, full sheet in th
 
 Then more rooms (3–5 lifestyle total). Then optional clean print examples (`10-`–`13-`), `00-bundle-grid.png`, and `06-size-chart.png`. The CLI ranks `01-` first, then `02-`–`05-`, then `10-`–`13-`, then `00-`, then `06-`. Skips `_qa*` and `07`/`08`/`09`. Cap 10 photos.
 
-Cover crops: `python scripts/crop-listing-hero.py`. Photo-only upload (no zip/PDF/copy patch): `node scripts/etsy-api.mjs push --listing <alias> --photos-only`.
+Cover crops: `python scripts/crop-listing-hero.py`. Photo-only upload (no zip/PDF/copy patch): `node scripts/etsy-api.mjs push --listing <alias> --photos-only`. Local agent: run [COVER-CARDS.md](../../../COVER-CARDS.md) — crop your `output/` files, then `--photos-only`.
 
 ## Known listing ids
 
