@@ -1,0 +1,93 @@
+{
+  "sheet": "output/_hero-previews/shop-grid-after.jpg",
+  "listings": [
+    {
+      "alias": "kopitiam",
+      "label": "Kopitiam",
+      "photos": "output/kopitiam/listing-photos",
+      "hero": {
+        "from": "02-closeup-teh.jpg",
+        "out": "01-hero-closeup-teh.jpg",
+        "crop": [0.20, 0.14, 0.80, 0.64]
+      },
+      "moves": []
+    },
+    {
+      "alias": "singlish",
+      "label": "Singlish",
+      "photos": "output/singlish/listing-photos",
+      "hero": {
+        "from": "_source-desk.jpg",
+        "out": "01-hero-desk.jpg",
+        "crop": [0.16, 0.00, 0.84, 0.56]
+      },
+      "moves": []
+    },
+    {
+      "alias": "combined",
+      "label": "Japandi + Botanical",
+      "photos": "output/combined/listing-photos",
+      "hero": {
+        "from": "01-hero-pine-closeup.jpg",
+        "out": "01-hero-pine-closeup.jpg",
+        "crop": [0.04, 0.06, 0.96, 0.90]
+      },
+      "moves": []
+    },
+    {
+      "alias": "home-bundle",
+      "label": "Home quotes",
+      "photos": "output/angle-2/bundle/listing-photos",
+      "hero": {
+        "from": "03-closeup-l03.jpg",
+        "out": "01-hero-closeup-l03.jpg",
+        "crop": [0.16, 0.00, 0.84, 0.56]
+      },
+      "moves": []
+    },
+    {
+      "alias": "travel-ready",
+      "label": "Travel ready",
+      "photos": "output/travel-journal/ready-made/listing-photos",
+      "hero": {
+        "from": "04-hallway.jpg",
+        "out": "01-hero-hallway.jpg",
+        "crop": [0.26, 0.00, 0.78, 0.50]
+      },
+      "moves": []
+    },
+    {
+      "alias": "travel",
+      "label": "Travel custom",
+      "photos": "output/travel-journal/listing-photos",
+      "hero": {
+        "from": "_source-framed.jpg",
+        "out": "01-hero-framed.jpg",
+        "crop": [0.10, 0.16, 0.90, 0.76]
+      },
+      "moves": []
+    },
+    {
+      "alias": "cocoa",
+      "label": "Cocoa",
+      "photos": "output/cocoa/listing-photos",
+      "hero": {
+        "from": "03-closeup.jpg",
+        "out": "01-hero-closeup.jpg",
+        "crop": [0.12, 0.06, 0.88, 0.70]
+      },
+      "moves": []
+    },
+    {
+      "alias": "pocket",
+      "label": "Pocket",
+      "photos": "output/pocket/listing-photos",
+      "hero": {
+        "from": "03-close-pear.jpg",
+        "out": "01-hero-close-pear.jpg",
+        "crop": [0.12, 0.06, 0.88, 0.70]
+      },
+      "moves": []
+    }
+  ]
+}

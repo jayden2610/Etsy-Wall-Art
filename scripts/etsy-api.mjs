@@ -29,11 +29,40 @@ const SETS = {
     pdf: "pocket/INFO.pdf",
     desc: "output/pocket/listing-photos/listing-description.txt",
   },
+  combined: {
+    id: "4565408194",
+    photos: "output/combined/listing-photos",
+  },
+  singlish: {
+    id: "4566462994",
+    photos: "output/singlish/listing-photos",
+  },
+  kopitiam: {
+    id: "4566504162",
+    photos: "output/kopitiam/listing-photos",
+  },
+  "home-bundle": {
+    id: "4565314043",
+    photos: "output/angle-2/bundle/listing-photos",
+  },
+  travel: {
+    id: "4565293952",
+    photos: "output/travel-journal/listing-photos",
+  },
+  "travel-ready": {
+    id: "4565295242",
+    photos: "output/travel-journal/ready-made/listing-photos",
+  },
 };
 
 const KNOWN = Object.fromEntries(
-  Object.entries(SETS).map(([alias, set]) => [alias, set.id]),
+  Object.entries(SETS)
+    .filter(([, set]) => set.id)
+    .map(([alias, set]) => [alias, set.id]),
 );
+
+const LISTING_HELP =
+  "Need --listing <cocoa|pocket|combined|singlish|kopitiam|home-bundle|travel|travel-ready|anton|id>";
 
 function die(message) {
   console.error(message);
@@ -72,7 +101,7 @@ function blobFromFile(filePath) {
 
 function orderListingPhotos(dir) {
   const names = fs.readdirSync(dir).filter((name) => {
-    if (name.startsWith("_")) return false;
+    if (name.startsWith("_") || name.startsWith("proof-")) return false;
     if (!/^\d{2}-/.test(name)) return false;
     if (/^(07|08|09)-/.test(name)) return false;
     return /\.(jpe?g|png)$/i.test(name);
@@ -80,13 +109,15 @@ function orderListingPhotos(dir) {
   const rank = (name) => {
     if (/^01-/.test(name)) return 1;
     if (/^0[2-5]-/.test(name)) return 2;
-    if (/^00-/.test(name)) return 3;
-    if (/^06-/.test(name)) return 4;
+    if (/^1[0-3]-/.test(name)) return 3;
+    if (/^00-/.test(name)) return 4;
+    if (/^06-/.test(name)) return 5;
     return 9;
   };
-  return names
+  const ordered = names
     .sort((a, b) => rank(a) - rank(b) || a.localeCompare(b))
     .map((name) => path.join(dir, name));
+  return ordered.slice(0, 10);
 }
 
 async function api(creds, token, method, urlPath, { json, form } = {}) {
@@ -208,7 +239,7 @@ async function cmdStatus() {
 }
 
 async function cmdGet(listingId) {
-  if (!listingId) die("Need listing id or cocoa|anton|pocket");
+  if (!listingId) die("Need listing id or alias");
   const creds = requireCreds();
   const token = await refreshAccessToken(creds);
   const listing = await getListing(creds, token, listingId);
@@ -244,23 +275,52 @@ async function cmdPush() {
   }
   const listingArg = argValue("--listing");
   const listingId = resolveListingId(listingArg);
-  if (!listingId) die("Need --listing <id|cocoa|anton|pocket>");
+  if (!listingId) die(LISTING_HELP);
   const set = SETS[listingArg.toLowerCase()] || {};
+  const photosOnly = hasFlag("--photos-only");
 
   const photoDir = argValue("--photos") || set.photos || "";
-  const zipPath = argValue("--zip") || set.zip || "";
-  const pdfPath = argValue("--pdf") || set.pdf || "";
-  const descPath = argValue("--desc") || set.desc || "";
-  const title = argValue("--title");
-  const tagsRaw = argValue("--tags");
+  const zipPath = photosOnly ? "" : argValue("--zip") || set.zip || "";
+  const pdfPath = photosOnly ? "" : argValue("--pdf") || set.pdf || "";
+  const descPath = photosOnly ? "" : argValue("--desc") || set.desc || "";
+  const title = photosOnly ? "" : argValue("--title");
+  const tagsRaw = photosOnly ? "" : argValue("--tags");
   const dryRun = hasFlag("--dry-run");
 
   const photoPaths = photoDir ? orderListingPhotos(path.resolve(ROOT, photoDir)) : [];
   const filePaths = [zipPath, pdfPath]
     .filter(Boolean)
     .map((filePath) => path.resolve(ROOT, filePath));
+  if (photosOnly && !photoPaths.length) {
+    die(`--photos-only needs listing photos in ${photoDir || "(no --photos dir)"}`);
+  }
   for (const filePath of [...photoPaths, ...filePaths]) {
     if (!fs.existsSync(filePath)) die(`Missing file: ${filePath}`);
+  }
+
+  const patch = {};
+  if (!photosOnly) patch.type = "download";
+  if (title) patch.title = title;
+  if (descPath) patch.description = fs.readFileSync(path.resolve(ROOT, descPath), "utf8");
+  if (tagsRaw) patch.tags = tagsRaw.split(",").map((tag) => tag.trim()).filter(Boolean);
+
+  if (dryRun) {
+    console.log(
+      JSON.stringify(
+        {
+          ok: true,
+          listingId,
+          photos: photoPaths.map((filePath) => path.basename(filePath)),
+          files: filePaths.map((filePath) => path.basename(filePath)),
+          patch: Object.keys(patch),
+          photosOnly,
+          dryRun: true,
+        },
+        null,
+        2,
+      ),
+    );
+    return;
   }
 
   const creds = requireCreds();
@@ -269,25 +329,6 @@ async function cmdPush() {
   await rememberShop(listing);
   if (listing.state === "active" && (photoPaths.length || filePaths.length)) {
     console.error("Listing is active. Uploading files/photos on an active listing is allowed; still not publishing.");
-  }
-
-  const patch = { type: "download" };
-  if (title) patch.title = title;
-  if (descPath) patch.description = fs.readFileSync(path.resolve(ROOT, descPath), "utf8");
-  if (tagsRaw) patch.tags = tagsRaw.split(",").map((tag) => tag.trim()).filter(Boolean);
-
-  const plan = {
-    listingId,
-    state: listing.state,
-    shopId: listing.shop_id,
-    patch: Object.keys(patch),
-    photos: photoPaths.map((filePath) => path.basename(filePath)),
-    files: filePaths.map((filePath) => path.basename(filePath)),
-    dryRun,
-  };
-  if (dryRun) {
-    console.log(JSON.stringify({ ok: true, ...plan }, null, 2));
-    return;
   }
 
   if (Object.keys(patch).length) {
@@ -321,8 +362,40 @@ async function cmdPush() {
   );
 }
 
+async function cmdPullPhotos() {
+  const listingArg = argValue("--listing") || process.argv[3] || "";
+  const listingId = resolveListingId(listingArg);
+  if (!listingId) die(LISTING_HELP);
+  const set = SETS[listingArg.toLowerCase()] || {};
+  const photoDir = path.resolve(ROOT, argValue("--photos") || set.photos || "");
+  if (!photoDir || photoDir === path.resolve(ROOT)) {
+    die("Need --photos or a SETS photos dir");
+  }
+  const creds = requireCreds();
+  const token = await refreshAccessToken(creds);
+  const listing = await getListing(creds, token, listingId);
+  await rememberShop(listing);
+  const images = await api(creds, token, "GET", `/listings/${listingId}/images`);
+  const rows = (images.results || []).slice().sort((a, b) => a.rank - b.rank);
+  const destDir = path.join(photoDir, "_pulled");
+  fs.mkdirSync(destDir, { recursive: true });
+  const written = [];
+  for (const row of rows) {
+    const url = row.url_fullxfull || row.url_570xN || row.url_170x135;
+    if (!url) continue;
+    const ext = path.extname(new URL(url).pathname) || ".jpg";
+    const dest = path.join(destDir, `rank-${String(row.rank).padStart(2, "0")}${ext}`);
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`GET ${url} ${res.status}`);
+    fs.writeFileSync(dest, Buffer.from(await res.arrayBuffer()));
+    written.push({ rank: row.rank, file: path.basename(dest), id: row.listing_image_id });
+  }
+  console.log(JSON.stringify({ ok: true, listingId, state: listing.state, dest: destDir, images: written }, null, 2));
+}
+
 const command = process.argv[2] || "status";
 if (command === "status") await cmdStatus();
 else if (command === "get") await cmdGet(resolveListingId(process.argv[3]));
 else if (command === "push") await cmdPush();
-else die(`Unknown command: ${command}. Use status | get | push.`);
+else if (command === "pull-photos") await cmdPullPhotos();
+else die(`Unknown command: ${command}. Use status | get | push | pull-photos.`);

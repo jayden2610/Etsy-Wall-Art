@@ -63,7 +63,11 @@ Buyer files: 300 DPI, sRGB, 4500px on the short side. Cocoa is PNG. Pocket is JP
 
 ### Listing photos
 
-Hero / shop thumbnail = **one framed room**, wood still visible. Then more rooms (3–5 lifestyle total). Then optional `00-bundle-grid.png` and `06-size-chart.png`. The CLI ranks `01-` first, then `02-`–`05-`, then `00-`, then `06-`. Skips `_qa*` and `07`/`08`/`09`.
+Hero / shop thumbnail (`01-`) is a **cover card**: oak visible, full sheet in the opening, framed print filling **at least 40%** of a 1:1 Etsy tile (target ~50%). Combined pine close-up is the bar. Wide living room, desk lifestyle, hallway, and gallery wall are `02-`–`05-` only. Paper still picks the house — see [rooms.md](rooms.md). Do not default Cocoa / Pocket / Combined / Kopitiam to the monstera living-room plate.
+
+Then more rooms (3–5 lifestyle total). Then optional clean print examples (`10-`–`13-`), `00-bundle-grid.png`, and `06-size-chart.png`. The CLI ranks `01-` first, then `02-`–`05-`, then `10-`–`13-`, then `00-`, then `06-`. Skips `_qa*` and `07`/`08`/`09`. Cap 10 photos.
+
+Cover crops: `python scripts/crop-listing-hero.py`. Photo-only upload (no zip/PDF/copy patch): `node scripts/etsy-api.mjs push --listing <alias> --photos-only`. Local agent: run [COVER-CARDS.md](../../../COVER-CARDS.md) — crop your `output/` files, then `--photos-only`.
 
 ## Known listing ids
 
@@ -71,8 +75,13 @@ Hero / shop thumbnail = **one framed room**, wood still visible. Then more rooms
 |---|---|---|---|
 | Cocoa | 4564758499 | `cocoa` | yes |
 | Pocket Studies | 4564965599 | `pocket` | yes |
+| Japandi + Botanical | 4565408194 | `combined` | photos |
+| Singlish | 4566462994 | `singlish` | photos |
+| Kopitiam | 4566504162 | `kopitiam` | photos |
+| Home Typography 5 | 4565314043 | `home-bundle` | photos |
+| Travel ready-made | 4565295242 | `travel-ready` | **live** · photos only |
+| Travel custom | 4565293952 | `travel` | **live** · photos only · do not unpublish |
 | Anton (parked) | 4564670051 | `anton` | id only — pass paths if you must touch it |
-| Japandi / Botanical | — | — | not listed yet |
 
 ## Etsy via Open API
 
@@ -93,7 +102,7 @@ node scripts/etsy-api.mjs push --listing pocket
 
 Aliases resolve photos, zip, PDF, and description from `SETS` in `scripts/etsy-api.mjs`. Pass `--photos` / `--zip` / `--pdf` / `--desc` / `--title` only to override.
 
-Then `node scripts/etsy-api.mjs get cocoa`. Confirm: state is `draft`, hero is the living-room frame, zip + PDF present. Human opens Shop Manager once to look. Do not send `state=active`.
+Then `node scripts/etsy-api.mjs get cocoa`. Confirm: state is `draft`, hero is the **cover card** (tight oak, not the wide living room), zip + PDF present. Human opens Shop Manager once to look. Do not send `state=active`.
 
 `--dry-run` prints the plan. `--publish` / `--active` are refused.
 
